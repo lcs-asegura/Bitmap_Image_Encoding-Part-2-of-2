@@ -41,7 +41,7 @@ for character in encodedBitmap {
     print(character)
 }
 
-// I notice that newline characters are rendered as an...
+// I notice that newline characters are rendered as an... INvisable character. It pushes the character after down.
 
 
 /*:
