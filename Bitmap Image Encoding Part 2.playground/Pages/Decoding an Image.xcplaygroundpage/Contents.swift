@@ -20,19 +20,33 @@ import PlaygroundSupport
 
 // Copy your encoded image string here...
 let encodedBitmap = """
-1,3,1
-4,1
-1,4
-0,1,3,1
-0,1,3,1
-1,4
+w9b3w7
+w7b2l1d2b2w6
+w6b1l4d3b1w5
+w5b1l6d3b1w4
+w4b1l8d3b1w3
+w3b1l9d4b1w2
+w3b1l81l1d3b1w2
+w2b1l1b4l5b4d1b1w1
+w2b1l1b1w2b2l3b2w2b1d1b1w1
+w2b1l1b1w1b4l1b4w1b1d1b1w1
+w2b1l1b3w1b2l1b2w1b3d1b1w1
+w3b1l1b5l1b5d1b1w2
+w3b1l2b4l1b4d2b1w2
+w4b1l8d3b1w3
+w4b1l8d3b1w3
+w5b1l6d3b1w4
+w6b1l4d3b1w5
+w4b2l1b2l1d2b2d1b2w3
+w2b2l4d1b3d5b2w1
+w1b1l7d3l1d6b1
+
 """
 
 // Make a canvas
 let canvas = Canvas(width: 402, height: 402)
 
 // Make a grid
-// NOTE: The code that builds the grid was tucked away in something called a *function* to keep things tidy. We'll learn about functions later.
 drawGrid(on: canvas)
 
 // Start drawing at left
@@ -53,28 +67,31 @@ var drawThisManyPixels = 0
 // Iterate over each character in the encoded bitmap string
 for character in encodedBitmap {
     
+    // Print the current character so we can see what it is
+    print("Current character is:")
+    print(character)
+    
     // Set colour at start of a line
-    if character == "0" {
+    if character == "b" {
         
         canvas.fillColor = Color.black
         currentColor = "black"
-
-    } else if character == "," {
         
-        // We have a new number
-        // Are we past the first pixel in a row?
-        if x > 0 {
+    } else if character == "w" {
+        
+        canvas.fillColor = Color.white
+        currentColor = "White"
+        
+    } else if character == "l" {
+        
+        canvas.fillColor = Color.init(hue: 120, saturation: 100, brightness: 100, alpha: 100)
+        currentColor = "Light Green"
+        
+    } else if character == "d" {
+        
+        canvas.fillColor = Color.init(hue: 115, saturation: 100, brightness: 50, alpha: 100)
+        currentColor = "Dark Green"
 
-            // Toggle the pixel colour
-            if currentColor == "black" {
-                currentColor = "white"
-                canvas.fillColor = Color.white
-            } else {
-                currentColor = "black"
-                canvas.fillColor = Color.black
-            }
-
-        }
         
     } else if character == "\n" {
         
